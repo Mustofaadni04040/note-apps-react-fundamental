@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export default function NotesDetail({ title, dates, body }) {
   return (
-    <>
+    <div className="border p-5 border-slate-200 rounded-lg min-h-screen">
       <div className="mb-3">
         <h1 className="text-xl text-slate-600 font-bold hover:text-slate-500">
           {title}
@@ -12,7 +12,7 @@ export default function NotesDetail({ title, dates, body }) {
       <div>
         <p className="text-slate-500">{body}</p>
       </div>
-    </>
+    </div>
   );
 }
 NotesDetail.propTypes = {

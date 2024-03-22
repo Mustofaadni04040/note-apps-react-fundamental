@@ -2,7 +2,7 @@ import { showFormattedDate } from "../../../utils";
 import NotesItem from "../notesItem/NotesItem";
 import PropTypes from "prop-types";
 
-export default function NotesList({ notes }) {
+export default function NotesList({ notes, onDeleteCardHandler }) {
   if (notes.length === 0) {
     return <h1 className="text-center mt-7">Tidak ada catatan</h1>;
   }
@@ -17,6 +17,7 @@ export default function NotesList({ notes }) {
             title={note.title}
             body={note.body}
             dates={showFormattedDate(note.createdAt)}
+            onDeleteCardHandler={onDeleteCardHandler}
           />
         );
       })}
@@ -33,4 +34,5 @@ NotesList.propTypes = {
       archived: PropTypes.bool.isRequired,
     })
   ),
+  onDeleteCardHandler: PropTypes.func.isRequired,
 };

@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { IoIosAdd } from "react-icons/io";
-import Button from "../../button/Button";
 import { FaArrowLeft } from "react-icons/fa";
+import Button from "../../elements/button/Button";
 
 export default function Navigation() {
   const location = useLocation();
