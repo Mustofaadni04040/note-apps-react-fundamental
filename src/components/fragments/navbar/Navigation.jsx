@@ -48,8 +48,10 @@ export default function Navigation() {
           )}
           {location.pathname === "/" && (
             <Button>
-              Tambah
-              <IoIosAdd className="text-xl" />
+              <Link to="/notes/new" className="flex items-center">
+                Tambah
+                <IoIosAdd className="text-xl" />
+              </Link>
             </Button>
           )}
         </div>

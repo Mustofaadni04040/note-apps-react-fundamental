@@ -1,6 +1,7 @@
 import SearchBar from "../../elements/searchBar/SearchBar";
+import PropTypes from "prop-types";
 
-export default function Header() {
+export default function Header({ onKeywordChangeHandler }) {
   return (
     <section className="shadow">
       <header className="container p-5 mx-auto flex justify-between items-center">
@@ -10,9 +11,12 @@ export default function Header() {
           </h1>
         </div>
         <div>
-          <SearchBar />
+          <SearchBar onKeywordChangeHandler={onKeywordChangeHandler} />
         </div>
       </header>
     </section>
   );
 }
+Header.propTypes = {
+  onKeywordChangeHandler: PropTypes.func.isRequired,
+};
