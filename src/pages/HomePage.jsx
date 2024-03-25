@@ -3,11 +3,9 @@ import PropTypes from "prop-types";
 
 export default function HomePage({ notes }) {
   return (
-    <section className="mt-7">
-      <div className="container p-5 mx-auto">
-        <NotesList notes={notes} />
-      </div>
-    </section>
+    <div className="container p-5 mx-auto mt-7">
+      <NotesList notes={notes} />
+    </div>
   );
 }
 

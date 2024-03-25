@@ -54,11 +54,13 @@ function getNote(id) {
 
 function getActiveNotes() {
   const activeNotes = notes.filter((note) => !note.archived);
+  console.log(activeNotes)
   return activeNotes;
 }
 
 function getArchivedNotes() {
   const archivedNotes = notes.filter((note) => note.archived);
+  console.log(archivedNotes)
   return archivedNotes;
 }
 
@@ -66,6 +68,7 @@ function addNote({ title, body }) {
   notes = [...notes, {
     id: `notes-${+new Date()}`, title: title || '(untitled)', body, createdAt: new Date().toISOString(), archived: false,
   }];
+  console.log(notes)
 }
 
 function deleteNote(id) {

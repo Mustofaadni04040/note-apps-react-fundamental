@@ -7,7 +7,7 @@ export default function Navigation() {
   const location = useLocation();
 
   return (
-    <section className="mt-7">
+    <section className="mt-7 font-inter">
       <nav className="container px-5 mx-auto">
         <div className="flex justify-between items-center">
           {!location.pathname.startsWith("/notes/") ? (
@@ -40,7 +40,7 @@ export default function Navigation() {
           ) : (
             <ul>
               <li>
-                <Link to="/" className="text-sky-500">
+                <Link to="/" className="text-sky-500" title="kembali">
                   <FaArrowLeft />
                 </Link>
               </li>

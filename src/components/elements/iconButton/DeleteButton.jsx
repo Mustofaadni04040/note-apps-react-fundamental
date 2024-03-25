@@ -3,7 +3,7 @@ import { IoTrashOutline } from "react-icons/io5";
 
 export default function DeleteButton({ onHandlerDeleteNote, id }) {
   return (
-    <button type="button" onClick={() => onHandlerDeleteNote(id)}>
+    <button type="button" onClick={() => onHandlerDeleteNote(id)} title="hapus">
       <IoTrashOutline className="text-red-500 text-2xl hover:text-red-600 duration-200" />
     </button>
   );

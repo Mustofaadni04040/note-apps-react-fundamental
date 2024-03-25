@@ -1,17 +1,17 @@
 import { showFormattedDate } from "../../../utils";
-import NotesItem from "../notesItem/NotesItem";
+import ArchivedItems from "../archivedItems/ArchivedItems";
 import PropTypes from "prop-types";
 
-export default function NotesList({ notes }) {
-  if (!notes || notes.length === 0) {
+export default function ArchivedList({ archivedNotes }) {
+  if (archivedNotes.length === 0) {
     return <h1 className="text-center mt-7">Tidak ada catatan</h1>;
   }
 
   return (
     <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 font-inter">
-      {notes.map((note) => {
+      {archivedNotes.map((note) => {
         return (
-          <NotesItem
+          <ArchivedItems
             key={note.id}
             id={note.id}
             title={note.title}
@@ -23,8 +23,8 @@ export default function NotesList({ notes }) {
     </section>
   );
 }
-NotesList.propTypes = {
-  notes: PropTypes.arrayOf(
+ArchivedList.propTypes = {
+  archivedNotes: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,

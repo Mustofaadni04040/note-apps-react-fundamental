@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Card from "../../elements/card/Card";
 import PropTypes from "prop-types";
 
-export default function NotesItem({ id, title, body, dates }) {
+export default function ArchivedItems({ id, title, body, dates }) {
   return (
     <Card>
       <div className="mb-3">
@@ -12,13 +12,13 @@ export default function NotesItem({ id, title, body, dates }) {
         <p className="text-sm text-slate-500">{dates}</p>
       </div>
       <div>
-        <p className="text-slate-500 break-words">{body}</p>
+        <p className="text-slate-500">{body}</p>
       </div>
     </Card>
   );
 }
 
-NotesItem.propTypes = {
+ArchivedItems.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
