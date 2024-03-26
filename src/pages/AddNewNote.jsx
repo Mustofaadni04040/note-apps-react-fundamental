@@ -1,4 +1,4 @@
-import NoteInput from "../components/fragments/noteInput/NoteInput";
+import NoteInput from "../components/fragments/NoteInput";
 import PropTypes from "prop-types";
 
 export default function AddNewNote({ onHandlerAddNote }) {

@@ -65,10 +65,16 @@ function getArchivedNotes() {
 }
 
 function addNote({ title, body }) {
-  notes = [...notes, {
-    id: `notes-${+new Date()}`, title: title || '(untitled)', body, createdAt: new Date().toISOString(), archived: false,
-  }];
+  const newNote = {
+    id: `notes-${+new Date()}`,
+    title: title || '(untitled)',
+    body,
+    createdAt: new Date().toISOString(),
+    archived: false,
+  };
+  notes = [...notes, newNote]
   console.log(notes)
+  return newNote
 }
 
 function deleteNote(id) {

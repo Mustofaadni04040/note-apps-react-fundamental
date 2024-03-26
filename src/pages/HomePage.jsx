@@ -1,4 +1,4 @@
-import NotesList from "../components/fragments/notesList/NotesList";
+import NotesList from "../components/fragments/NotesList";
 import PropTypes from "prop-types";
 
 export default function HomePage({ notes }) {

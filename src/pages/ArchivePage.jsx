@@ -1,4 +1,4 @@
-import ArchivedList from "../components/fragments/archivedList/ArchivedList";
+import ArchivedList from "../components/fragments/ArchivedList";
 import PropTypes from "prop-types";
 
 export default function ArchivePage({ archivedNotes }) {

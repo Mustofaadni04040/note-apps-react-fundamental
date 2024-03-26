@@ -1,14 +1,17 @@
 import PropTypes from "prop-types";
-import DeleteButton from "../../elements/iconButton/DeleteButton";
-import ArchiveButton from "../../elements/iconButton/ArchiveButton";
+import DeleteButton from "../elements/iconButton/DeleteButton";
+import ArchiveButton from "../elements/iconButton/ArchiveButton";
+import UnArchiveButton from "../elements/iconButton/UnarchiveButton";
 
 export default function NotesDetail({
   title,
   dates,
   body,
-  onHandlerDeleteNote,
   id,
+  archived,
+  onHandlerDeleteNote,
   onHandlerArchivedNote,
+  onHandlerUnArchivedPage,
 }) {
   return (
     <section className="mt-7 font-inter">
@@ -19,10 +22,18 @@ export default function NotesDetail({
             <p className="text-sm text-slate-500">{dates}</p>
           </div>
           <div className="flex items-center gap-3">
-            <ArchiveButton
-              id={id}
-              onHandlerArchivedNote={onHandlerArchivedNote}
-            />
+            {archived === false ? (
+              <ArchiveButton
+                id={id}
+                onHandlerArchivedNote={onHandlerArchivedNote}
+              />
+            ) : (
+              <UnArchiveButton
+                id={id}
+                onHandlerUnArchivedPage={onHandlerUnArchivedPage}
+              />
+            )}
+
             <DeleteButton id={id} onHandlerDeleteNote={onHandlerDeleteNote} />
           </div>
         </div>
@@ -38,6 +49,8 @@ NotesDetail.propTypes = {
   dates: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  archived: PropTypes.bool.isRequired,
   onHandlerDeleteNote: PropTypes.func.isRequired,
   onHandlerArchivedNote: PropTypes.func.isRequired,
+  onHandlerUnArchivedPage: PropTypes.func.isRequired,
 };

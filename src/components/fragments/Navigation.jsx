@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { IoIosAdd } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
-import Button from "../../elements/button/Button";
+import Button from "../elements/button/Button";
 
 export default function Navigation() {
   const location = useLocation();
@@ -47,7 +47,7 @@ export default function Navigation() {
             </ul>
           )}
           {location.pathname === "/" && (
-            <Button>
+            <Button type="button">
               <Link to="/notes/new" className="flex items-center">
                 Tambah
                 <IoIosAdd className="text-xl" />

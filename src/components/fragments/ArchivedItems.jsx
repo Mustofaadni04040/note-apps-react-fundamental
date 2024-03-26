@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Card from "../../elements/card/Card";
+import Card from "../elements/card/Card";
 import PropTypes from "prop-types";
 
 export default function ArchivedItems({ id, title, body, dates }) {

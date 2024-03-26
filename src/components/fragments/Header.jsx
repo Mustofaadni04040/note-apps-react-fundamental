@@ -1,4 +1,4 @@
-import SearchBar from "../../elements/searchBar/SearchBar";
+import SearchBar from "../elements/searchBar/SearchBar";
 import PropTypes from "prop-types";
 
 export default function Header({ keyword, onKeywordChangeHandler }) {
