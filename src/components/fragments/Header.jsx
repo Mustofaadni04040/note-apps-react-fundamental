@@ -1,7 +1,10 @@
+import { useLocation } from "react-router-dom";
 import SearchBar from "../elements/searchBar/SearchBar";
 import PropTypes from "prop-types";
 
 export default function Header({ keyword, onKeywordChangeHandler }) {
+  const location = useLocation();
+
   return (
     <section className="shadow font-inter">
       <header className="container overflow-hidden p-5 mx-auto flex justify-between items-center">
@@ -11,15 +14,18 @@ export default function Header({ keyword, onKeywordChangeHandler }) {
           </h1>
         </div>
         <div>
-          <SearchBar
-            keyword={keyword}
-            onKeywordChangeHandler={onKeywordChangeHandler}
-          />
+          {location.pathname === "/" && (
+            <SearchBar
+              keyword={keyword}
+              onKeywordChangeHandler={onKeywordChangeHandler}
+            />
+          )}
         </div>
       </header>
     </section>
   );
 }
+
 Header.propTypes = {
   onKeywordChangeHandler: PropTypes.func.isRequired,
   keyword: PropTypes.string.isRequired,

@@ -50,9 +50,15 @@ export default function NoteApps() {
     navigate("/");
   };
 
-  const handlerDeleteNote = (id) => {
+  const handlerDeleteActiveNote = (id) => {
     deleteNote(id);
-    setNotes(getAllNotes());
+    setNotes(getActiveNotes());
+    navigate("/");
+  };
+
+  const handlerDeleteArchivedNote = (id) => {
+    deleteNote(id);
+    setArchivedNotes(getArchivedNotes());
     navigate("/");
   };
 
@@ -95,7 +101,8 @@ export default function NoteApps() {
               path="/notes/:id"
               element={
                 <DetailPage
-                  onHandlerDeleteNote={handlerDeleteNote}
+                  onHandlerDeleteActiveNote={handlerDeleteActiveNote}
+                  onHandlerDeleteArchivedNote={handlerDeleteArchivedNote}
                   onHandlerArchivedNote={handlerArchivedNote}
                   onHandlerUnArchivedPage={handlerActiveNote}
                 />

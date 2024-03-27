@@ -9,7 +9,8 @@ export default function NotesDetail({
   body,
   id,
   archived,
-  onHandlerDeleteNote,
+  onHandlerDeleteActiveNote,
+  onHandlerDeleteArchivedNote,
   onHandlerArchivedNote,
   onHandlerUnArchivedPage,
 }) {
@@ -21,21 +22,23 @@ export default function NotesDetail({
             <h1 className="text-xl text-slate-600 font-bold">{title}</h1>
             <p className="text-sm text-slate-500">{dates}</p>
           </div>
-          <div className="flex items-center gap-3">
-            {archived === false ? (
+          {archived === false ? (
+            <div className="flex items-center gap-3">
               <ArchiveButton
                 id={id}
                 onHandlerArchivedNote={onHandlerArchivedNote}
               />
-            ) : (
+              <DeleteButton id={id} deleteNote={onHandlerDeleteActiveNote} />
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
               <UnArchiveButton
                 id={id}
                 onHandlerUnArchivedPage={onHandlerUnArchivedPage}
               />
-            )}
-
-            <DeleteButton id={id} onHandlerDeleteNote={onHandlerDeleteNote} />
-          </div>
+              <DeleteButton id={id} deleteNote={onHandlerDeleteArchivedNote} />
+            </div>
+          )}
         </div>
         <div>
           <p className="text-slate-500">{body}</p>
@@ -50,7 +53,8 @@ NotesDetail.propTypes = {
   body: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   archived: PropTypes.bool.isRequired,
-  onHandlerDeleteNote: PropTypes.func.isRequired,
+  onHandlerDeleteActiveNote: PropTypes.func.isRequired,
+  onHandlerDeleteArchivedNote: PropTypes.func.isRequired,
   onHandlerArchivedNote: PropTypes.func.isRequired,
   onHandlerUnArchivedPage: PropTypes.func.isRequired,
 };

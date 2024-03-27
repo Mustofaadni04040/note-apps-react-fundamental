@@ -6,9 +6,10 @@ import { showFormattedDate } from "../utils";
 import PropTypes from "prop-types";
 
 export default function DetailPage({
-  onHandlerDeleteNote,
+  onHandlerDeleteActiveNote,
   onHandlerArchivedNote,
   onHandlerUnArchivedPage,
+  onHandlerDeleteArchivedNote,
 }) {
   const { id } = useParams();
   const [note, setNote] = useState(null);
@@ -29,7 +30,8 @@ export default function DetailPage({
         body={note.body}
         archived={note.archived}
         dates={showFormattedDate(note.createdAt)}
-        onHandlerDeleteNote={onHandlerDeleteNote}
+        onHandlerDeleteActiveNote={onHandlerDeleteActiveNote}
+        onHandlerDeleteArchivedNote={onHandlerDeleteArchivedNote}
         onHandlerArchivedNote={onHandlerArchivedNote}
         onHandlerUnArchivedPage={onHandlerUnArchivedPage}
       />
@@ -37,7 +39,8 @@ export default function DetailPage({
   );
 }
 DetailPage.propTypes = {
-  onHandlerDeleteNote: PropTypes.func.isRequired,
+  onHandlerDeleteActiveNote: PropTypes.func.isRequired,
+  onHandlerDeleteArchivedNote: PropTypes.func.isRequired,
   onHandlerArchivedNote: PropTypes.func.isRequired,
   onHandlerUnArchivedPage: PropTypes.func.isRequired,
 };
