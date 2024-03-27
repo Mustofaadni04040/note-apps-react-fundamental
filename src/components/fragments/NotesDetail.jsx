@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import DeleteButton from "../elements/iconButton/DeleteButton";
 import ArchiveButton from "../elements/iconButton/ArchiveButton";
 import UnArchiveButton from "../elements/iconButton/UnarchiveButton";
+import parser from "html-react-parser";
 
 export default function NotesDetail({
   title,
@@ -40,9 +41,7 @@ export default function NotesDetail({
             </div>
           )}
         </div>
-        <div>
-          <p className="text-slate-500">{body}</p>
-        </div>
+        <div className="prose prose-slate break-words">{parser(body)}</div>
       </div>
     </section>
   );

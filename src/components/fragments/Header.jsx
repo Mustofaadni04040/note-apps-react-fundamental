@@ -9,12 +9,12 @@ export default function Header({ keyword, onKeywordChangeHandler }) {
     <section className="shadow font-inter">
       <header className="container overflow-hidden p-5 mx-auto flex justify-between items-center">
         <div>
-          <h1 className="text-xl ">
-            <span className="text-sky-500 font-bold">Net</span>Notes
+          <h1 className="text-xl lg:text-2xl">
+            <span className="text-sky-500 font-bold">Ad</span>Notes
           </h1>
         </div>
         <div>
-          {location.pathname === "/" && (
+          {location.pathname !== "/notes/new" && (
             <SearchBar
               keyword={keyword}
               onKeywordChangeHandler={onKeywordChangeHandler}

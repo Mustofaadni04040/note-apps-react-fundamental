@@ -54,13 +54,11 @@ function getNote(id) {
 
 function getActiveNotes() {
   const activeNotes = notes.filter((note) => !note.archived);
-  console.log(activeNotes)
   return activeNotes;
 }
 
 function getArchivedNotes() {
   const archivedNotes = notes.filter((note) => note.archived);
-  console.log(archivedNotes)
   return archivedNotes;
 }
 
@@ -73,7 +71,6 @@ function addNote({ title, body }) {
     archived: false,
   };
   notes = [...notes, newNote]
-  console.log(notes)
   return newNote
 }
 

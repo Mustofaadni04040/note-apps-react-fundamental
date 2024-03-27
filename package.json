@@ -12,6 +12,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^41.2.1",
     "@ckeditor/ckeditor5-react": "^6.2.0",
+    "@tailwindcss/typography": "^0.5.12",
     "html-react-parser": "^5.1.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

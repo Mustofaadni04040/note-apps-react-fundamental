@@ -31,9 +31,18 @@ export default function NoteInput({ onHandlerAddNote }) {
           editor={ClassicEditor}
           data={body}
           config={{
-            placeholder: "Tulis catatanmu disini...",
+            placeholder: "Sebenarnya saya adalah...",
           }}
           onChange={(e, editor) => onBodyChangeEventHandler(e, editor)}
+          onReady={(editor) => {
+            editor.editing.view.change((writer) => {
+              writer.setStyle(
+                "height",
+                "300px",
+                editor.editing.view.document.getRoot()
+              );
+            });
+          }}
         />
       </div>
       <div className="flex justify-end mt-7">
