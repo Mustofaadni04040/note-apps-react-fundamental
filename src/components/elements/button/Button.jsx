@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 
-export default function Button({ children, type }) {
+export default function Button({
+  children,
+  type,
+  classname,
+  onClick = () => {},
+}) {
   return (
-    <button
-      className="flex items-center gap-1 py-1 px-3 rounded bg-sky-500 text-white hover:bg-sky-600 duration-200"
-      type={type}
-    >
+    <button className={classname} type={type} onClick={onClick}>
       {children}
     </button>
   );
@@ -13,4 +15,6 @@ export default function Button({ children, type }) {
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   type: PropTypes.string.isRequired,
+  classname: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 };

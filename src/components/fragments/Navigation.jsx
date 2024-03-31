@@ -6,7 +6,8 @@ import Button from "../elements/button/Button";
 export default function Navigation() {
   const location = useLocation();
 
-  return (
+  return location.pathname === "/register" ||
+    location.pathname === "/login" ? null : (
     <section className="mt-7 font-inter">
       <nav className="container px-5 mx-auto">
         <div className="flex justify-between items-center">
@@ -47,7 +48,10 @@ export default function Navigation() {
             </ul>
           )}
           {location.pathname === "/" && (
-            <Button type="button">
+            <Button
+              type="button"
+              classname="flex items-center gap-1 py-1 px-3 rounded bg-sky-500 text-white hover:bg-sky-600 duration-200"
+            >
               <Link to="/notes/new" className="flex items-center">
                 Tambah
                 <IoIosAdd className="text-xl" />

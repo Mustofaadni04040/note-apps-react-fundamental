@@ -14,8 +14,8 @@ export default function NoteInput({ onHandlerAddNote }) {
     setBody(editor.getData());
   }
   function onSubmitEventHandler(e) {
-    onHandlerAddNote({ title, body });
     e.preventDefault();
+    onHandlerAddNote({ title, body });
   }
   return (
     <>
@@ -46,10 +46,12 @@ export default function NoteInput({ onHandlerAddNote }) {
         />
       </div>
       <div className="flex justify-end mt-7">
-        <Button type="submit">
-          <Link onClick={onSubmitEventHandler} title="simpan">
-            Tambah
-          </Link>
+        <Button
+          type="submit"
+          classname="flex items-center gap-1 py-1 px-3 rounded bg-sky-500 text-white hover:bg-sky-600 duration-200"
+          onClick={onSubmitEventHandler}
+        >
+          <Link title="simpan">Tambah</Link>
         </Button>
       </div>
     </>
