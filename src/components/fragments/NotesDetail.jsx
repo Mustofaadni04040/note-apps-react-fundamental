@@ -3,6 +3,8 @@ import DeleteButton from "../elements/iconButton/DeleteButton";
 import ArchiveButton from "../elements/iconButton/ArchiveButton";
 import UnArchiveButton from "../elements/iconButton/UnarchiveButton";
 import parser from "html-react-parser";
+import { useContext } from "react";
+import { DarkMode } from "../../context/ThemeContext";
 
 export default function NotesDetail({
   title,
@@ -15,12 +17,19 @@ export default function NotesDetail({
   onHandlerArchivedNote,
   onHandlerUnArchivedPage,
 }) {
+  const { isDarkMode } = useContext(DarkMode);
   return (
     <section className="mt-7 font-inter">
       <div className="container mx-auto border p-5 border-slate-200 rounded-lg min-h-screen">
         <div className="flex items-center justify-between">
           <div className="mb-3">
-            <h1 className="text-xl text-slate-600 font-bold">{title}</h1>
+            <h1
+              className={`text-xl text-slate-600 font-bold ${
+                isDarkMode && "text-slate-100"
+              }`}
+            >
+              {title}
+            </h1>
             <p className="text-sm text-slate-500">{dates}</p>
           </div>
           {archived === false ? (
@@ -41,7 +50,13 @@ export default function NotesDetail({
             </div>
           )}
         </div>
-        <div className="prose prose-slate break-words">{parser(body)}</div>
+        <div
+          className={`prose prose-slate break-words ${
+            isDarkMode && "text-slate-500"
+          }`}
+        >
+          {parser(body)}
+        </div>
       </div>
     </section>
   );

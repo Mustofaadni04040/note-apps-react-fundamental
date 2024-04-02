@@ -2,17 +2,30 @@ import { Link } from "react-router-dom";
 import Card from "../elements/card/Card";
 import PropTypes from "prop-types";
 import parser from "html-react-parser";
+import { useContext } from "react";
+import { DarkMode } from "../../context/ThemeContext";
 export default function NotesItem({ id, title, body, dates }) {
+  const { isDarkMode } = useContext(DarkMode);
   return (
     <Card>
       <div className="mb-3">
-        <h1 className="text-xl text-slate-600 font-bold hover:text-slate-500">
+        <h1
+          className={`text-xl text-slate-600 font-bold hover:text-slate-500 duration-200 ${
+            isDarkMode && "text-slate-100 hover:text-slate-300"
+          }`}
+        >
           <Link to={`/notes/${id}`}>{title}</Link>
         </h1>
         <p className="text-sm text-slate-500">{dates}</p>
       </div>
       <div>
-        <div className="break-words prose prose-slate">{parser(body)}</div>
+        <div
+          className={`break-words prose prose-slate ${
+            isDarkMode && "text-slate-500"
+          }`}
+        >
+          {parser(body)}
+        </div>
       </div>
     </Card>
   );

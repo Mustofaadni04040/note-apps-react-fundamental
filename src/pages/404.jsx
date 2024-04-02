@@ -12,7 +12,7 @@ export default function ErrorPage() {
         type="button"
         classname="flex items-center gap-1 py-1 px-3 rounded bg-sky-500 text-white hover:bg-sky-600 duration-200"
       >
-        <Link to="/">Kembali ke Home</Link>
+        <Link to="/">Kembali</Link>
       </Button>
     </div>
   );

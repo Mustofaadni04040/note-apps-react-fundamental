@@ -44,7 +44,7 @@ export default function FormLogin({ login }) {
         type="submit"
         classname="flex items-center justify-center w-full gap-1 py-1 px-3 rounded bg-sky-500 text-white hover:bg-sky-600 duration-200"
       >
-        Register
+        Login
       </Button>
     </form>
   );

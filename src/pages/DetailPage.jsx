@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { getNote } from "../utils/local-data";
 import NotesDetail from "../components/fragments/NotesDetail";
 import { useParams } from "react-router-dom";
 import { showFormattedDate } from "../utils";
 import PropTypes from "prop-types";
+import { getNote } from "../utils/network-data";
 
 export default function DetailPage({
   onHandlerDeleteActiveNote,
@@ -15,8 +15,11 @@ export default function DetailPage({
   const [note, setNote] = useState(null);
 
   useEffect(() => {
-    const selectedNote = getNote(id);
-    setNote(selectedNote);
+    const fetchDetailNote = async () => {
+      const { data } = await getNote(id);
+      setNote(data);
+    };
+    fetchDetailNote();
   }, [id]);
 
   if (!note) {

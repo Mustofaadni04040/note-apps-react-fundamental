@@ -75,7 +75,6 @@ async function addNote({ title, body }) {
     },
     body: JSON.stringify({ title, body }),
   });
-
   const responseJson = await response.json();
 
   if (responseJson.status !== 'success') {
