@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import SearchBar from "../elements/searchBar/SearchBar";
 import { IoIosLogOut } from "react-icons/io";
-import { MdOutlineLightMode } from "react-icons/md";
-import { MdOutlineDarkMode } from "react-icons/md";
+import { PiSun } from "react-icons/pi";
+import { PiMoonStarsLight } from "react-icons/pi";
 import { IoLanguage } from "react-icons/io5";
 import { useContext } from "react";
 import { DarkMode } from "../../context/ThemeContext";
@@ -45,7 +45,7 @@ export default function Header({
                 onKeywordChangeHandler={onKeywordChangeHandler}
               />
             )}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-5">
             <button
               onClick={Languege}
               className={`flex items-center text-xl text-sky-500 ${
@@ -56,9 +56,9 @@ export default function Header({
             </button>
             <button onClick={ToggleTheme}>
               {isDarkMode ? (
-                <MdOutlineLightMode className="text-2l lg:text-3xl text-sky-500" />
+                <PiSun className="text-xl lg:text-2xl text-sky-500" />
               ) : (
-                <MdOutlineDarkMode className="text-2l lg:text-3xl text-blue-950" />
+                <PiMoonStarsLight className="text-xl lg:text-2xl text-sky-500" />
               )}
             </button>
             <button

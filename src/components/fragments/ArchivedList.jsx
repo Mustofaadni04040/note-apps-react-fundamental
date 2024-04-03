@@ -15,7 +15,7 @@ export default function ArchivedList({ archivedNotes }) {
   }
 
   return (
-    <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 font-inter">
+    <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 font-inter">
       {archivedNotes.map((note) => {
         return (
           <ArchivedItems

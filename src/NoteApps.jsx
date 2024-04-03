@@ -41,33 +41,50 @@ export default function NoteApps() {
   const location = useLocation();
   const { isDarkMode } = useContext(DarkMode);
 
-  // console.log(archivedNote);
   useEffect(() => {
     async function fetchNotes() {
       if (authedUser) {
         const { data } = await getActiveNotes();
         setNotes(data);
-        setArchivedNotes(await getArchivedNotes());
         setLoading(false);
       }
     }
     fetchNotes();
-  }, [authedUser]);
+    setArchivedNotes(archivedNote);
+  }, [archivedNote, authedUser]);
+
+  useEffect(() => {
+    async function fetchArchivedNote() {
+      if (authedUser) {
+        const { data } = await getArchivedNotes();
+        setArchivedNotes(data);
+        // setLoading(false);
+      }
+    }
+    fetchArchivedNote();
+    setNotes(notes);
+  }, [notes, authedUser]);
+
+  const filteredNotes = notes.filter((note) => {
+    return note.title.toLowerCase().includes(keyword.toLowerCase());
+  });
+  const filteredArchivedNotes = archivedNote.filter((note) => {
+    return note.title.toLowerCase().includes(keyword.toLowerCase());
+  });
 
   async function handlerActiveNote(id) {
     await unarchiveNote(id);
     const { data } = await getActiveNotes();
     setNotes(data);
-    setArchivedNotes(await getArchivedNotes());
+    // setArchivedNotes(archivedNote);
     navigate("/");
   }
 
   async function handlerArchivedNote(id) {
     await archiveNote(id);
     const { data } = await getArchivedNotes();
-    // console.log(data);
-    setNotes(await getActiveNotes());
     setArchivedNotes(data);
+    // setNotes(notes);
     navigate("/");
   }
 
@@ -96,10 +113,6 @@ export default function NoteApps() {
     setKeyword(keyword);
     setSearchParams({ keyword });
   }
-
-  const filteredNotes = notes.filter((note) => {
-    return note.title.toLowerCase().includes(keyword.toLowerCase());
-  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -167,7 +180,7 @@ export default function NoteApps() {
             ></Route>
             <Route
               path="/archives"
-              element={<ArchivePage archivedNotes={archivedNote} />}
+              element={<ArchivePage archivedNotes={filteredArchivedNotes} />}
             />
             <Route
               path="/notes/:id"
@@ -177,6 +190,7 @@ export default function NoteApps() {
                   onHandlerDeleteArchivedNote={handlerDeleteArchivedNote}
                   onHandlerArchivedNote={handlerArchivedNote}
                   onHandlerUnArchivedPage={handlerActiveNote}
+                  loading={loading}
                 />
               }
             />

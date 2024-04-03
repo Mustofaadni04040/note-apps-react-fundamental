@@ -4,12 +4,14 @@ import { useParams } from "react-router-dom";
 import { showFormattedDate } from "../utils";
 import PropTypes from "prop-types";
 import { getNote } from "../utils/network-data";
+import { FadeLoader } from "react-spinners";
 
 export default function DetailPage({
   onHandlerDeleteActiveNote,
   onHandlerArchivedNote,
   onHandlerUnArchivedPage,
   onHandlerDeleteArchivedNote,
+  loading,
 }) {
   const { id } = useParams();
   const [note, setNote] = useState(null);
@@ -22,8 +24,8 @@ export default function DetailPage({
     fetchDetailNote();
   }, [id]);
 
-  if (!note) {
-    return <p>Catatan tidak tersedia</p>;
+  if (!note && loading === false) {
+    return <FadeLoader color="#0ea5e9" className="mx-auto" />;
   }
   return (
     <>
@@ -41,9 +43,11 @@ export default function DetailPage({
     </>
   );
 }
+
 DetailPage.propTypes = {
   onHandlerDeleteActiveNote: PropTypes.func.isRequired,
   onHandlerDeleteArchivedNote: PropTypes.func.isRequired,
   onHandlerArchivedNote: PropTypes.func.isRequired,
   onHandlerUnArchivedPage: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
