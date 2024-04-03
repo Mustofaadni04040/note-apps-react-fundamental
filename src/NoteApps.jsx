@@ -50,20 +50,18 @@ export default function NoteApps() {
       }
     }
     fetchNotes();
-    setArchivedNotes(archivedNote);
-  }, [archivedNote, authedUser]);
+  }, [authedUser]);
 
   useEffect(() => {
     async function fetchArchivedNote() {
       if (authedUser) {
         const { data } = await getArchivedNotes();
         setArchivedNotes(data);
-        // setLoading(false);
+        setLoading(false);
       }
     }
     fetchArchivedNote();
-    setNotes(notes);
-  }, [notes, authedUser]);
+  }, [authedUser]);
 
   const filteredNotes = notes.filter((note) => {
     return note.title.toLowerCase().includes(keyword.toLowerCase());
@@ -74,17 +72,20 @@ export default function NoteApps() {
 
   async function handlerActiveNote(id) {
     await unarchiveNote(id);
-    const { data } = await getActiveNotes();
-    setNotes(data);
-    // setArchivedNotes(archivedNote);
+    // Perbarui state notes dan archivedNote dengan data yang baru
+    const { data: activeNotes } = await getActiveNotes();
+    const { data: archivedNotes } = await getArchivedNotes();
+    setNotes(activeNotes);
+    setArchivedNotes(archivedNotes);
     navigate("/");
   }
 
   async function handlerArchivedNote(id) {
     await archiveNote(id);
-    const { data } = await getArchivedNotes();
-    setArchivedNotes(data);
-    // setNotes(notes);
+    const { data: activeNotes } = await getActiveNotes();
+    const { data: archivedNotes } = await getArchivedNotes();
+    setNotes(activeNotes);
+    setArchivedNotes(archivedNotes);
     navigate("/");
   }
 
@@ -115,13 +116,14 @@ export default function NoteApps() {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       const { data } = await getUserLogged();
       setAuthedUser(data);
       setInitializing(false);
-    };
+    }
     fetchData();
   }, []);
+
   async function onLoginSuccess({ accessToken }) {
     putAccessToken(accessToken);
     const { data } = await getUserLogged();
@@ -131,6 +133,7 @@ export default function NoteApps() {
   function onLogut() {
     setAuthedUser(null);
     putAccessToken("");
+    navigate("/");
   }
 
   const isError =
@@ -142,7 +145,7 @@ export default function NoteApps() {
     return null;
   }
 
-  if (authedUser === null) {
+  if (!authedUser) {
     return (
       <>
         {isError ? (
@@ -180,7 +183,12 @@ export default function NoteApps() {
             ></Route>
             <Route
               path="/archives"
-              element={<ArchivePage archivedNotes={filteredArchivedNotes} />}
+              element={
+                <ArchivePage
+                  archivedNotes={filteredArchivedNotes}
+                  loading={loading}
+                />
+              }
             />
             <Route
               path="/notes/:id"

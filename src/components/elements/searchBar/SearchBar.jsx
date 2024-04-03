@@ -27,7 +27,7 @@ export default function SearchBar({ keyword, onKeywordChangeHandler }) {
       }`}
     >
       <button onClick={showInputHandler}>
-        <BiSearch className="text-slate-700 text-xl lg:text-2xl hover:text-slate-600" />
+        <BiSearch className="text-slate-700 text-xl lg:text-2xl hover:text-slate-600 duration-200" />
       </button>
       {showInput && (
         <input

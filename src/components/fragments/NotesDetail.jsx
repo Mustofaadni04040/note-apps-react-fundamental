@@ -20,17 +20,27 @@ export default function NotesDetail({
   const { isDarkMode } = useContext(DarkMode);
   return (
     <section className="mt-7 font-inter">
-      <div className="container mx-auto border p-5 border-slate-200 rounded-lg min-h-screen">
+      <div
+        className={`container mx-auto border p-5 border-slate-200 rounded-lg min-h-screen ${
+          isDarkMode && "border-slate-900"
+        }`}
+      >
         <div className="flex items-center justify-between">
           <div className="mb-3">
             <h1
               className={`text-xl text-slate-600 font-bold ${
-                isDarkMode && "text-slate-100"
+                isDarkMode && "text-slate-200"
               }`}
             >
               {title}
             </h1>
-            <p className="text-sm text-slate-500">{dates}</p>
+            <p
+              className={`text-sm text-slate-500 ${
+                isDarkMode && "text-slate-400"
+              }`}
+            >
+              {dates}
+            </p>
           </div>
           {archived === false ? (
             <div className="flex items-center gap-3">
@@ -52,7 +62,7 @@ export default function NotesDetail({
         </div>
         <div
           className={`prose prose-slate break-words ${
-            isDarkMode && "text-slate-500"
+            isDarkMode && "text-slate-400"
           }`}
         >
           {parser(body)}

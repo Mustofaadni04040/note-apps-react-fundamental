@@ -1,10 +1,10 @@
 import ArchivedList from "../components/fragments/ArchivedList";
 import PropTypes from "prop-types";
 
-export default function ArchivePage({ archivedNotes }) {
+export default function ArchivePage({ archivedNotes, loading }) {
   return (
     <div className="container p-5 mt-7 mx-auto">
-      <ArchivedList archivedNotes={archivedNotes} />
+      <ArchivedList archivedNotes={archivedNotes} loading={loading} />
     </div>
   );
 }
@@ -19,4 +19,5 @@ ArchivePage.propTypes = {
       archived: PropTypes.bool.isRequired,
     })
   ),
+  loading: PropTypes.bool.isRequired,
 };

@@ -11,17 +11,17 @@ export default function NotesItem({ id, title, body, dates }) {
       <div className="mb-3">
         <h1
           className={`text-xl text-slate-600 font-bold hover:text-slate-500 duration-200 ${
-            isDarkMode && "text-slate-100 hover:text-slate-300"
+            isDarkMode && "text-slate-200 hover:text-slate-100"
           }`}
         >
           <Link to={`/notes/${id}`}>{title}</Link>
         </h1>
-        <p className="text-sm text-slate-500">{dates}</p>
+        <p className="text-sm text-slate-400">{dates}</p>
       </div>
       <div>
         <div
           className={`break-words prose prose-slate ${
-            isDarkMode && "text-slate-500"
+            isDarkMode && "text-slate-400"
           }`}
         >
           {parser(body)}

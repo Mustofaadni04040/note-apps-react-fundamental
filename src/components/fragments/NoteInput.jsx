@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../elements/button/Button";
 import { Link } from "react-router-dom";
@@ -11,6 +11,11 @@ export default function NoteInput({ onHandlerAddNote }) {
   const [title, setTitle] = useState("");
   const { isDarkMode } = useContext(DarkMode);
   const { locale } = useContext(Locale);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   function onTitleChangeEventHandler(e) {
     setTitle(e.target.value);
@@ -27,6 +32,7 @@ export default function NoteInput({ onHandlerAddNote }) {
       <div className="flex flex-col gap-5">
         <input
           type="text"
+          ref={inputRef}
           placeholder={locale === "id" ? "Judul Catatan" : "Note title"}
           value={title}
           onChange={onTitleChangeEventHandler}

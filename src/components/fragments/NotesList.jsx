@@ -7,7 +7,16 @@ import { FadeLoader } from "react-spinners";
 
 export default function NotesList({ notes, loading }) {
   const { isDarkMode } = useContext(DarkMode);
-  if (!notes || (notes.length === 0 && loading === false)) {
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <FadeLoader color="#0ea5e9" className="mx-auto" />
+      </div>
+    );
+  }
+
+  if (notes.length === 0 && !loading) {
     return (
       <h1 className={`text-center mt-7 ${isDarkMode && "text-slate-300"}`}>
         Tidak ada catatan
@@ -18,25 +27,20 @@ export default function NotesList({ notes, loading }) {
   return (
     <section
       className={`${
-        loading === false &&
-        "grid gap-3 sm:grid-cols-2 lg:grid-cols-4 font-inter"
+        !loading && "grid gap-3 sm:grid-cols-2 lg:grid-cols-4 font-inter"
       }`}
     >
-      {loading === true ? (
-        <FadeLoader color="#0ea5e9" className="mx-auto" />
-      ) : (
-        notes.map((note) => {
-          return (
-            <NotesItem
-              key={note.id}
-              id={note.id}
-              title={note.title}
-              body={note.body}
-              dates={showFormattedDate(note.createdAt)}
-            />
-          );
-        })
-      )}
+      {notes.map((note) => {
+        return (
+          <NotesItem
+            key={note.id}
+            id={note.id}
+            title={note.title}
+            body={note.body}
+            dates={showFormattedDate(note.createdAt)}
+          />
+        );
+      })}
     </section>
   );
 }

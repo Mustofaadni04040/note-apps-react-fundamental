@@ -3,10 +3,20 @@ import { DarkMode } from "../../context/ThemeContext";
 import { showFormattedDate } from "../../utils";
 import ArchivedItems from "./ArchivedItems";
 import PropTypes from "prop-types";
+import { FadeLoader } from "react-spinners";
 
-export default function ArchivedList({ archivedNotes }) {
+export default function ArchivedList({ archivedNotes, loading }) {
   const { isDarkMode } = useContext(DarkMode);
-  if (archivedNotes.length === 0) {
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <FadeLoader color="#0ea5e9" className="mx-auto" />
+      </div>
+    );
+  }
+
+  if (archivedNotes.length === 0 && !loading) {
     return (
       <h1 className={`text-center mt-7 ${isDarkMode && "text-slate-300"}`}>
         Tidak ada catatan
@@ -15,7 +25,11 @@ export default function ArchivedList({ archivedNotes }) {
   }
 
   return (
-    <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 font-inter">
+    <section
+      className={
+        !loading && "grid gap-3 sm:grid-cols-2 lg:grid-cols-4 font-inter"
+      }
+    >
       {archivedNotes.map((note) => {
         return (
           <ArchivedItems
@@ -40,4 +54,5 @@ ArchivedList.propTypes = {
       archived: PropTypes.bool.isRequired,
     })
   ),
+  loading: PropTypes.bool.isRequired,
 };
